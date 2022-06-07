@@ -17,10 +17,10 @@ param (
     [Parameter()]
     [ValidateNotNullOrEmpty()]
     [string]
-    $Company = "XOSS"
+    $Company = "XOAP"
 )
 
-$globalPrefix = "XOSS"
+$globalPrefix = "XOAP"
 $curDirectory = Resolve-Path .\
 $templatePath = Join-Path $curDirectory "templates"
 $rootModulePath = Resolve-Path ..\..\

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <plasterManifest
   schemaVersion="1.0" xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
   <metadata>
@@ -7,7 +7,7 @@
     <version>1.0.0</version>
     <title>PowershellDSCResource</title>
     <description></description>
-    <author>Benedikt Brauneck</author>
+    <author>XOAP</author>
     <tags></tags>
   </metadata>
   <parameters>
