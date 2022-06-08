@@ -7,7 +7,7 @@
         <version>1.0.0</version>
         <title>PowershellDSCModule</title>
         <description></description>
-        <author>Benedikt Brauneck</author>
+        <author>XOAP</author>
         <tags></tags>
     </metadata>
     <parameters>
