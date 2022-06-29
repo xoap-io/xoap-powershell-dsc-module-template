@@ -1,6 +1,6 @@
 # Getting started
 
-This scripts are used to easly create new dsc composite ressources.
+This scripts are used to easly create new XOAP PowerShell DSC composite resources.
 
 ## Prerequisites
 
@@ -13,25 +13,28 @@ Import-Module Plaster
 
 ## Creating new modules
 
-Modules will be automatically created once you are creating a new composite ressource.
+Modules will be automatically created once you are creating a new composite resource.
 
-## Creating new composite ressources
+## Creating new composite resources
 
-Composite ressources can easily be deployed via the invocation of
+Composite resources can easily be deployed via the invocation of:
 
 ´´PowerShell
-.\New-CompositeRessource.ps1
+.\New-CompositeResource.ps1
 ``
 
 with parameters
 
 ´´PowerShell
-.\New-CompositeRessource.ps1 -Module W2K19DC1903Baseline -Version 1.0.0 -Ressource DSC_ScheduledTasks
+.\New-CompositeResource.ps1 -Module Template -Version 1.0.0 -Resource DSC_Template
 ``
+
+The prefix "XOAP" is automatically added and the postfix "DSC" as well.
+
 The parameter list is as followed:
 
-| Parameter | Description                            | Note |
-| --------- | -------------------------------------- | ---- |
-| Module    | Name of the outer module part          | -    |
-| Version   | Target version of the module           | -    |
-| Ressource | The name of the ressource /config part | -    |
+| Parameter | Description                           | Note |
+| --------- | ------------------------------------- | ---- |
+| Module    | Name of the outer module part         | -    |
+| Version   | Target version of the module          | -    |
+| Resource  | The name of the resource /config part | -    |
