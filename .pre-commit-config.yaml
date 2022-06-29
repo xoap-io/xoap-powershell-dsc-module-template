@@ -31,22 +31,6 @@ repos:
       - id: no-commit-to-branch
         args:
           - -b main
-  - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.72.1
-    hooks:
-      - id: terraform_fmt
-      - id: terraform_tflint
-      - id: terraform_docs
-        args:
-          - --hook-config=--path-to-file=README.md
-          - --hook-config=--add-to-existing-file=true
-          - --hook-config=--create-file-if-not-exist=true
-      - id: terraform_tfsec
-      - id: terraform_validate
-  - repo: https://github.com/Checkmarx/kics
-    rev: v1.5.9
-    hooks:
-      - id: kics
   - repo: https://github.com/sirosen/check-jsonschema
     rev: 0.15.1
     hooks:
