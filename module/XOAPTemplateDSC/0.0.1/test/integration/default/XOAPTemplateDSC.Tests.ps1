@@ -8,7 +8,5 @@ describe 'When setting up a webserver' {
     it 'installs a default website' {
       Get-Website 'Default Web Site' | should not be $null
     }
-
   }
-
 }

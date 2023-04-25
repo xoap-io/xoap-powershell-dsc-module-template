@@ -23,7 +23,7 @@ param (
 $globalPrefix = "XOAP"
 $curDirectory = Resolve-Path .\
 $templatePath = Join-Path $curDirectory "templates"
-$rootModulePath = Resolve-Path ..\..\
+$rootModulePath = Resolve-Path ..\
 $Module = "${globalPrefix}${Module}DSC"
 $modulePath = Join-Path $rootModulePath "$Module"
 $moduleVersionPath = Join-Path $modulePath $Version
@@ -65,7 +65,7 @@ else
     $template = Join-Path $templatePath "composite_resource"
     $moduleData = @{
         project_name = "${Ressource}"
-        version = "1.0.0"
+        version = "0.0.1"
         company = $Company
         TemplatePath = "$template"
         DestinationPath = "$ressourcePath"

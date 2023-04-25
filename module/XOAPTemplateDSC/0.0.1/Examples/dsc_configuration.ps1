@@ -1,4 +1,4 @@
-configuration default
+configuration Template
 {
     param
     (
@@ -6,13 +6,12 @@ configuration default
         [string[]]$NodeName = 'localhost'
     )
 
-    Import-Module <%=${PLASTER_PARAM_project_name}%>
-    Import-DSCResource -ModuleName <%=${PLASTER_PARAM_project_name}%>
+    Import-Module XOAPTemplateDSC
+    Import-DSCResource -ModuleName XOAPTemplateDSC
 
     Node $NodeName
     {
-
-        $moduleRoot = [io.path]::GetDirectoryName((Get-Module <%=${PLASTER_PARAM_project_name}%>).Path)
+        $moduleRoot = [io.path]::GetDirectoryName((Get-Module XOAPTemplateDSC).Path)
         $examples = "$moduleRoot\Examples"
 
         # Install the IIS role
@@ -21,6 +20,5 @@ configuration default
             Ensure          = "Present"
             Name            = "Web-Server"
         }
-
     }
 }

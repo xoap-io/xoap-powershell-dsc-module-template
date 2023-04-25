@@ -1,4 +1,4 @@
-configuration ScheduledTasks
+configuration Template
 {
     [CmdletBinding()]
     param (
@@ -6,9 +6,8 @@ configuration ScheduledTasks
         [TypeName]
         $ParameterName
     )
+    Import-DSCResource -ModuleName xPSDesiredStateConfiguration
 
-    #Import-DSCResource -ModuleName xPSDesiredStateConfiguration
-    #
     #xRegistry disableInsecureCipher_a
     #{
     #    Key       = 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\DES 56/56'
@@ -18,5 +17,4 @@ configuration ScheduledTasks
     #    Ensure    = 'Present'
     #    Force     = $true
     #}
-
 }
