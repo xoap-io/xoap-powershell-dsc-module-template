@@ -17,7 +17,7 @@ param (
     [Parameter()]
     [ValidateNotNullOrEmpty()]
     [string]
-    $Company = "XOAP"
+    $Company = "RIS AG"
 )
 
 $globalPrefix = "XOAP"

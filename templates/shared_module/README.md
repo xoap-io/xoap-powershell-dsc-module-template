@@ -15,7 +15,7 @@ run the following command:
     Find-Module -Name <%=${PLASTER_PARAM_project_name}%> -Repository PSGallery | Install-Module
 
 To confirm installation, run the below command and ensure you see the
-<%=${PLASTER_PARAM_project_name}%> DSC resoures available:
+<%=${PLASTER_PARAM_project_name}%> DSC resources available:
 
     Get-DscResource -Module <%=${PLASTER_PARAM_project_name}%>
 

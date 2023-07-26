@@ -1,4 +1,4 @@
-configuration Template
+configuration default
 {
     param
     (
@@ -6,12 +6,13 @@ configuration Template
         [string[]]$NodeName = 'localhost'
     )
 
-    Import-Module XOAPTemplateDSC
-    Import-DSCResource -ModuleName XOAPTemplateDSC
+    Import-Module XOAPAVDOptimizationW11DSC
+    Import-DSCResource -ModuleName XOAPAVDOptimizationW11DSC
 
     Node $NodeName
     {
-        $moduleRoot = [io.path]::GetDirectoryName((Get-Module XOAPTemplateDSC).Path)
+
+        $moduleRoot = [io.path]::GetDirectoryName((Get-Module XOAPAVDOptimizationW11DSC).Path)
         $examples = "$moduleRoot\Examples"
 
         # Install the IIS role
@@ -20,5 +21,7 @@ configuration Template
             Ensure          = "Present"
             Name            = "Web-Server"
         }
+
     }
 }
+
