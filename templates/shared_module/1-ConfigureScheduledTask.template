@@ -5,7 +5,7 @@ configuration Example
         [string[]]$NodeName = 'localhost'
     )
 
-    Import-DSCResource -ModuleName XOAPW2K19BaselineDSC
+    Import-DSCResource -ModuleName XOAPModuleTemplateDSC
 
     Node $AllNodes.NodeName
     {

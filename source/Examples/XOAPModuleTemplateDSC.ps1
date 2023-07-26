@@ -1,4 +1,4 @@
-configuration Template
+configuration XOAPModuleTemplateDSC
 {
     param
     (
@@ -6,13 +6,14 @@ configuration Template
         [string[]]$NodeName = 'localhost'
     )
 
-    Import-Module XOAPTemplateDSC
-    Import-DSCResource -ModuleName XOAPTemplateDSC
+    Import-Module XOAPModuleTemplateDSC
+    Import-DSCResource -ModuleName XOAPModuleTemplateDSC
 
     Node $NodeName
     {
-        $moduleRoot = [io.path]::GetDirectoryName((Get-Module XOAPTemplateDSC).Path)
-        $examples = "$moduleRoot\Examples"
+
+        $moduleRoot = [io.path]::GetDirectoryName((Get-Module XOAPModuleTemplateDSC).Path)
+        #$examples = "$moduleRoot\Examples"
 
         # Install the IIS role
         WindowsFeature IIS
@@ -20,5 +21,7 @@ configuration Template
             Ensure          = "Present"
             Name            = "Web-Server"
         }
+
     }
 }
+
