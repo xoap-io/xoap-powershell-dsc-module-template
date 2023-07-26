@@ -33,7 +33,7 @@ jobs:
         with:
           type: 'zip'
           filename: 'XOAPModuleTemplateDSC_${{ steps.tag_version.outputs.new_tag }}.zip'
-          exclusions: '*.git* /*License/* CONTRIBUTING.md CODEOWNERS.md CODE_OF_CONDUCT.md .pre-commit.yaml .gitignore .gitattributes .github'
+          exclusions: '*.git* /*License/* CONTRIBUTING.md CODEOWNERS.md CODE_OF_CONDUCT.md .pre-commit.yaml .gitignore .gitattributes .github /templates/* New-CompositeResource.ps1 /test/*'
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
