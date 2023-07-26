@@ -40,13 +40,13 @@ Modules will be automatically created once you are creating a new DSC resource.
 DSC resources can easily be deployed via the invocation of
 
 ´´´PowerShell
-.\New-DSCModule.ps1
+.\New-CompositeResource.ps1
 ``´
 
 with parameters
 
 ´´´PowerShell
-.\New-DSCModule.ps1 -Module W2K19DC1903Baseline -Version 1.0.0 -Resource ScheduledTasks
+.\New-CompositeResource.ps1 -Module W2K19DC1903Baseline -Version 1.0.0 -Resource ScheduledTasks
 ´´´
 
 The parameter list is as followed:
