@@ -1,6 +1,6 @@
-# XOAPApplicationPackagingDSC
+# XOAPModuleTemplateDSC
 
-This module contains DSC resources for the configuration of a Windows node, that can be used to package applications with the PSADT.
+This repository is a template that can be used as a starting point for creating new DSC modules and resources.
 
 ## Code of Conduct
 
