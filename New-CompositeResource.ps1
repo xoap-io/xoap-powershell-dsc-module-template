@@ -23,7 +23,7 @@ param (
 $globalPrefix = "XOAP"
 $curDirectory = Resolve-Path .\
 $templatePath = Join-Path $curDirectory "templates"
-$rootModulePath = Resolve-Path ..\
+$rootModulePath = Resolve-Path .\source
 $Module = "${globalPrefix}${Module}DSC"
 $modulePath = Join-Path $rootModulePath "$Module"
 $moduleVersionPath = Join-Path $modulePath $Version
