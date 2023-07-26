@@ -22,8 +22,10 @@ This script is used to easily create new DSC modules and resources.
 
 Please install Plaster first and make sure it's present.
 
+```powershell
 Install-Module Plaster
 Import-Module Plaster
+```
 
 ## Create new DSC modules
 
