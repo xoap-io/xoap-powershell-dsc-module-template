@@ -1,4 +1,4 @@
-configuration default
+configuration XOAPModuleTemplateDSC
 {
     param
     (
@@ -6,14 +6,14 @@ configuration default
         [string[]]$NodeName = 'localhost'
     )
 
-    Import-Module XOAPAVDOptimizationW11DSC
-    Import-DSCResource -ModuleName XOAPAVDOptimizationW11DSC
+    Import-Module XOAPModuleTemplateDSC
+    Import-DSCResource -ModuleName XOAPModuleTemplateDSC
 
     Node $NodeName
     {
 
-        $moduleRoot = [io.path]::GetDirectoryName((Get-Module XOAPAVDOptimizationW11DSC).Path)
-        $examples = "$moduleRoot\Examples"
+        $moduleRoot = [io.path]::GetDirectoryName((Get-Module XOAPModuleTemplateDSC).Path)
+        #$examples = "$moduleRoot\Examples"
 
         # Install the IIS role
         WindowsFeature IIS
