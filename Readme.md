@@ -55,5 +55,5 @@ The parameter list is as followed:
 
 ### Examples
 
-You can review the [Examples](/source/Examples/Resources) directory in the **XOAPModuleTemplateDSC** module
+You can review the [Examples](/Examples/Resources) directory in the **XOAPModuleTemplateDSC** module
 for some general use scenarios for all the resources that are in the module.
