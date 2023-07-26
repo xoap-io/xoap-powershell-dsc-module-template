@@ -35,11 +35,15 @@ Modules will be automatically created once you are creating a new DSC resource.
 
 DSC resources can easily be deployed via the invocation of
 
+```powershell
 .\New-CompositeResource.ps1
+```
 
 with parameters
 
+```powershell
 .\New-CompositeResource.ps1 -Module XOAPModuleTemplateDSC -Version 0.0.1 -Resource ScheduledTasks
+```
 
 The parameter list is as followed:
 
