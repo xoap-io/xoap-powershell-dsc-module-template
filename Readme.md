@@ -6,10 +6,6 @@ This repository is a template that can be used as a starting point for creating 
 
 This project has adopted this [Code of Conduct](CODE_OF_CONDUCT.md).
 
-## Releases
-
-tbd
-
 ## Contributing
 
 Please check out common DSC Community [contributing guidelines](https://dsccommunity.org/guidelines/contributing).
@@ -26,10 +22,8 @@ This script is used to easily create new DSC modules and resources.
 
 Please install Plaster first and make sure it's present.
 
-´´´PowerShell
 Install-Module Plaster
 Import-Module Plaster
-´´´
 
 ## Create new DSC modules
 
@@ -39,15 +33,11 @@ Modules will be automatically created once you are creating a new DSC resource.
 
 DSC resources can easily be deployed via the invocation of
 
-´´´PowerShell
 .\New-CompositeResource.ps1
-``´
 
 with parameters
 
-´´´PowerShell
-.\New-CompositeResource.ps1 -Module W2K19DC1903Baseline -Version 1.0.0 -Resource ScheduledTasks
-´´´
+.\New-CompositeResource.ps1 -Module XOAPModuleTemplateDSC -Version 0.0.1 -Resource ScheduledTasks
 
 The parameter list is as followed:
 
@@ -59,5 +49,5 @@ The parameter list is as followed:
 
 ### Examples
 
-You can review the [Examples](/source/Examples/Resources) directory in the **XOAPApplicationPackagingDSC** module
+You can review the [Examples](/source/Examples/Resources) directory in the **XOAPModuleTemplateDSC** module
 for some general use scenarios for all the resources that are in the module.
