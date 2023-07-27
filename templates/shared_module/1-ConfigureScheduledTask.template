@@ -7,12 +7,9 @@ configuration Example
 
     Import-DSCResource -ModuleName XOAPModuleTemplateDSC
 
-    Node $AllNodes.NodeName
+    WindowsFeature IIS
     {
-        WindowsFeature IIS
-        {
-            Ensure          = "Present"
-            Name            = "Web-Server"
-        }
+        Ensure          = "Present"
+        Name            = "Web-Server"
     }
 }
