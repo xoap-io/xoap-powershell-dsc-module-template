@@ -16,6 +16,3 @@ jobs:
         with:
           token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
           fetch-depth: 0
-      - name: Archive production artifacts
-        if: ${{ success() }} || ${{ failure() }}
-        uses: actions/upload-artifact@v3
