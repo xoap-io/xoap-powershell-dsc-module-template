@@ -4,18 +4,18 @@
   <metadata>
     <name>PowershellDSCResource</name>
     <id>14f99429-b25c-45e0-be57-e43666652ab5</id>
-    <version>1.0.0</version>
+    <version>0.0.1</version>
     <title>PowershellDSCResource</title>
     <description></description>
-    <author>XOAP</author>
+    <author>XOAP.io</author>
     <tags></tags>
   </metadata>
   <parameters>
-      <parameter name='project_name' type='text' default='ExamplePowershellResource' prompt='Enter the name of the Powershell DSC resource'/>
-      <parameter name='full_name' type='user-fullname' default='XOAP' prompt='Enter your name'/>
-      <parameter name='company' type='text' default='XOAP' prompt='Enter your company name'/>
-      <parameter name='project_short_description' type='text' default="${PLASTER_PARAM_project_name}" prompt='Enter a description for the module'/>
-      <parameter name='version' type='text' default='0.0.1' prompt='Enter the initial version number for the module'/>
+        <parameter name='project_name' type='text' default='ExamplePowershellModule' prompt='Enter the name of the Powershell DSC module without pre- and -postfix'/>
+        <parameter name='full_name' type='user-fullname' default='XOAP.io' prompt='Enter your name (default is XOAP.io)'/>
+        <parameter name='company' type='text' default='RIS AG' prompt='Enter your company name (default is RIS AG)'/>
+        <parameter name='project_short_description' type='text' default="${PLASTER_PARAM_project_name}" prompt='Enter a description for the module'/>
+        <parameter name='version' type='text' default='0.0.1' prompt='Enter the initial version number for the module (default is 0.0.1)'/>
   </parameters>
   <content>
       <message>Creating new module manifest for ${PLASTER_PARAM_project_name}</message>
@@ -26,7 +26,5 @@
                          description='$PLASTER_PARAM_project_short_description'
                          companyName='$PLASTER_PARAM_company'
                          encoding='UTF8-NoBOM'/>
-      <message>Copying schema template</message>
-      <templateFile source='resource.schema.psm1.template'  destination='${PLASTER_PARAM_project_name}.schema.psm1'/>
   </content>
 </plasterManifest>
