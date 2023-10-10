@@ -4,18 +4,18 @@
     <metadata>
         <name>PowershellDSCModule</name>
         <id>76d2fef8-679c-44d8-8d99-1d35c77f9c0d</id>
-        <version>1.0.0</version>
+        <version>0.0.1</version>
         <title>PowershellDSCModule</title>
         <description></description>
-        <author>XOAP</author>
+        <author>XOAP.io</author>
         <tags></tags>
     </metadata>
     <parameters>
-        <parameter name='project_name' type='text' default='ExamplePowershellModule' prompt='Enter the name of the Powershell DSC module'/>
-        <parameter name='full_name' type='user-fullname' default='XOAP' prompt='Enter your name'/>
-        <parameter name='company' type='text' default='RIS AG' prompt='Enter your company name'/>
+        <parameter name='project_name' type='text' default='ExamplePowershellModule' prompt='Enter the name of the Powershell DSC module without pre- and -postfix'/>
+        <parameter name='full_name' type='user-fullname' default='XOAP.io' prompt='Enter your name (default is XOAP.io)'/>
+        <parameter name='company' type='text' default='RIS AG' prompt='Enter your company name (default is RIS AG)'/>
         <parameter name='project_short_description' type='text' default="${PLASTER_PARAM_project_name}" prompt='Enter a description for the module'/>
-        <parameter name='version' type='text' default='0.0.1' prompt='Enter the initial version number for the module'/>
+        <parameter name='version' type='text' default='0.0.1' prompt='Enter the initial version number for the module (default is 0.0.1)'/>
     </parameters>
     <content>
         <message>
@@ -28,10 +28,5 @@
                            description='$PLASTER_PARAM_project_short_description'
                            companyName='$PLASTER_PARAM_company'
                            encoding='UTF8-NoBOM'/>
-        <templateFile source='1-ConfigureScheduledTask.template' destination='Examples\ScheduledTasks\1-ConfigureScheduledTask.ps1'/>
-        <templateFile source='_gitignore'  destination='.gitignore'/>
-        <templateFile source='README.md'  destination='README.md'/>
-        <templateFile source='CHANGELOG.md'  destination='CHANGELOG.md'/>
-        <file source='_dummy'  destination='DSCResources\.dummy'/>
     </content>
 </plasterManifest>
