@@ -38,7 +38,7 @@ XOAP_DSCResource [String] #ResourceName
 
 ## Configuration examples for each resource
 
-You can review the [Examples](/Examples/Resources) directory in the **XOAPModuleTemplateDSC** module
+You can review the [Examples](/Examples/DSCResources) directory in the **XOAPModuleTemplateDSC** module
 for some general usage scenarios for all the resources that are in the module.
 
 To implement the Module Template DSC module, add the following resources to your DSC configuration and adjust the parameters accordingly:
