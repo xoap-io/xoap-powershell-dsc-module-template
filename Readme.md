@@ -12,7 +12,7 @@ Please check out common DSC Community [contributing guidelines](https://dsccommu
 
 ## Change log
 
-A full list of changes in each version can be found in the  [Releases](https://github.com/xoap-io/XOAPModuleTemplateDSC/releases).
+A full list of changes in each version can be found in the [change log](CHANGELOG.md).
 
 ## Documentation
 
@@ -20,46 +20,18 @@ This script is used to easily create new DSC modules and resources.
 
 ## Prerequisites
 
-Be sure that the following DSC modules are installed on your system:
+Please install Plaster first and make sure it's present.
 
-- ModuleName (x.x.x)
-
-## DSC Resources and syntax
-
-### XOAP_AddServerToCollection
-
-```PowerShell
-XOAP_DSCResource [String] #ResourceName
-    {
-        [DependsOn = [String[]]]
-        [PsDscRunAsCredential = [PSCredential]]
-    }
+```powershell
+Install-Module Plaster
+Import-Module Plaster
 ```
 
-## Configuration examples for each resource
+## Create new DSC modules
 
-You can review the [Examples](/Examples/Resources) directory in the **XOAPModuleTemplateDSC** module
-for some general usage scenarios for all the resources that are in the module.
+Modules will be automatically created once you are creating a new DSC resource.
 
-To implement the Module Template DSC module, add the following resources to your DSC configuration and adjust the parameters accordingly:
-
-### Add server to a collection
-
-```PowerShell
-configuration 'XOAP_DSCResource'
-{
-    Import-DscResource -ModuleName 'XOAPModuleTemplateDSC' -Name 'XOAP_DSCResource' -ModuleVersion '0.0.1'
-    
-    XOAP_DSCResource 'Example'
-    {
-          DependsOn = @('[String[]]')
-          PsDscRunAsCredential = [PSCredential]
-    }
-}
-XOAP_DSCResource 
-```
-
-## Create new DSC resource
+## Create new DSC resources
 
 DSC resources can easily be deployed via the invocation of
 
@@ -70,5 +42,18 @@ DSC resources can easily be deployed via the invocation of
 with parameters
 
 ```powershell
-.\New-CompositeResource.ps1 -Module 'XOAPModuleTemplateDSC' -Version '0.0.1' -Resource 'DSCResource'
+.\New-CompositeResource.ps1 -Module XOAPModuleTemplateDSC -Version 0.0.1 -Resource ScheduledTasks
 ```
+
+The parameter list is as followed:
+
+| Parameter | Description                            | Note |
+|-----------|----------------------------------------|------|
+| Module    | Name of the outer module part          | -    |
+| Version   | Target version of the module           | -    |
+| Ressource | The name of the ressource /config part | -    |
+
+### Examples
+
+You can review the [Examples](/Examples/Resources) directory in the **XOAPModuleTemplateDSC** module
+for some general use scenarios for all the resources that are in the module.

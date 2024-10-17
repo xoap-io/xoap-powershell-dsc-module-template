@@ -1,19 +1,27 @@
-Configuration 'XOAPModuleTemplateDSC'
+configuration XOAPModuleTemplateDSC
 {
-    Import-DSCResource -Module 'XOAPModuleTemplateDSC' -Name 'XOAP_DSCResource' -ModuleVersion '0.0.1'
-
     param
-        (
-            # Target nodes to apply the configuration
-            [string[]]$NodeName = 'localhost'
-        )
+    (
+        # Target nodes to apply the configuration
+        [string[]]$NodeName = 'localhost'
+    )
 
-    Node 'XOAPModuleTemplateDSC'
+    Import-Module XOAPModuleTemplateDSC
+    Import-DSCResource -ModuleName XOAPModuleTemplateDSC
+
+    Node $NodeName
     {
-        XOAP_DSCResource 'XOAP_DSCResource'
+
+        $moduleRoot = [io.path]::GetDirectoryName((Get-Module XOAPModuleTemplateDSC).Path)
+        #$examples = "$moduleRoot\Examples"
+
+        # Install the IIS role
+        WindowsFeature IIS
         {
+            Ensure          = "Present"
+            Name            = "Web-Server"
         }
 
     }
 }
-XOAPModuleTemplateDSC -OutputPath 'C:\XOAPModuleTemplateDSC'
+

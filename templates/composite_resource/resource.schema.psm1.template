@@ -1,0 +1,7 @@
+configuration <%=${PLASTER_PARAM_project_name}%>
+{
+Import-DSCResource -ModuleName xPSDesiredStateConfiguration
+
+
+
+}
