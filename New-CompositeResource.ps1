@@ -13,7 +13,7 @@ param (
     [Parameter(Mandatory=$true)]
     [ValidateNotNullOrEmpty()]
     [string]
-    $Ressource,
+    $Resource,
     [Parameter()]
     [ValidateNotNullOrEmpty()]
     [string]
@@ -27,8 +27,8 @@ $rootModulePath = Resolve-Path .\source
 $Module = "${globalPrefix}${Module}DSC"
 $modulePath = Join-Path $rootModulePath "$Module"
 $moduleVersionPath = Join-Path $modulePath $Version
-$moduleRessources = Join-Path $moduleVersionPath "DSCResources"
-$ressourcePath = Join-Path $moduleRessources $Ressource
+$moduleResources = Join-Path $moduleVersionPath "DSCResources"
+$resourcePath = Join-Path $moduleResources $Resource
 
 
 Write-Output "Checking if module $Module already exists under $moduleVersionPath"
@@ -53,22 +53,22 @@ else
 }
 
 
-Write-Output "Going to check if ressource $Ressource exists under $ressourcePath"
+Write-Output "Going to check if resource $Resource exists under $resourcePath"
 
-if(Test-Path "$ressourcePath")
+if(Test-Path "$resourcePath")
 {
-    Write-Error "Ressource $Ressource already exists. Aborting"
+    Write-Error "Resource $Resource already exists. Aborting"
 }
 else
 {
-    Write-Output "Creating new ressource $Ressource for module $Module"
+    Write-Output "Creating new resource $Resource for module $Module"
     $template = Join-Path $templatePath "composite_resource"
     $moduleData = @{
-        project_name = "${Ressource}"
+        project_name = "${Resource}"
         version = "0.0.1"
         company = $Company
         TemplatePath = "$template"
-        DestinationPath = "$ressourcePath"
+        DestinationPath = "$resourcePath"
     }
 
     Invoke-Plaster @moduleData

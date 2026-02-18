@@ -1,0 +1,60 @@
+TOPIC
+    about_XOAPWindowsConfigDSC
+
+SHORT DESCRIPTION
+    Template for creating PowerShell DSC modules and composite resources.
+
+LONG DESCRIPTION
+    XOAPWindowsConfigDSC is a template repository that provides a standardized
+    starting point for creating new PowerShell DSC (Desired State Configuration)
+    modules and composite resources.
+
+    This template includes:
+    - Modern build system using Sampler framework
+    - Automated testing with Pester 5.x
+    - CI/CD pipelines for Azure Pipelines and GitHub Actions
+    - Quality assurance with PSScriptAnalyzer
+    - VS Code integration
+    - Automated resource scaffolding
+
+CREATING NEW MODULES
+    New modules are automatically created when you create a DSC resource using
+    the New-CompositeResource.ps1 script:
+
+        .\New-CompositeResource.ps1 -Module MyModule -Version 1.0.0 -Resource MyResource
+
+    This command:
+    1. Creates a new module named XOAPMyModuleDSC
+    2. Creates the module manifest and folder structure
+    3. Creates a new composite resource named MyResource
+    4. Sets up all necessary files using Plaster templates
+
+BUILDING THE MODULE
+    To build the module from source:
+
+        .\build.ps1 -ResolveDependency -Tasks build
+
+    To run tests:
+
+        .\build.ps1 -Tasks test
+
+    See BUILD.md for detailed build instructions.
+
+EXAMPLES
+    Example 1: Create a new module with a resource
+        .\New-CompositeResource.ps1 -Module "WindowsSettings" -Version "1.0.0" -Resource "RegistryConfig"
+
+    Example 2: Build the module
+        .\build.ps1 -ResolveDependency -Tasks build
+
+    Example 3: Run all tests
+        .\build.ps1 -Tasks test
+
+SEE ALSO
+    - BUILD.md for detailed build instructions
+    - CONTRIBUTING.md for contribution guidelines
+    - DSC Community: https://dsccommunity.org/
+    - Sampler Framework: https://github.com/gaelcolas/Sampler
+
+KEYWORDS
+    DSC, PowerShell, Template, Composite Resource, Module

@@ -32,12 +32,12 @@ jobs:
         uses: TheDoctor0/zip-release@0.7.1
         with:
           type: 'zip'
-          filename: 'XOAPModuleTemplateDSC_${{ steps.tag_version.outputs.new_tag }}.zip'
+          filename: 'XOAPWindowsConfigDSC_${{ steps.tag_version.outputs.new_tag }}.zip'
           exclusions: '*.git* /*License/* CONTRIBUTING.md CODEOWNERS.md CODE_OF_CONDUCT.md .pre-commit.yaml .gitignore .gitattributes .github /templates/* New-CompositeResource.ps1 /test/*'
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: 'XOAPModuleTemplateDSC_${{ steps.tag_version.outputs.new_tag }}.zip'
+          artifacts: 'XOAPWindowsConfigDSC_${{ steps.tag_version.outputs.new_tag }}.zip'
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}

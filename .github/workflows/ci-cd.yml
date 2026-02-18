@@ -1,0 +1,154 @@
+---
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, master]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+  pull_request:
+    branches: [main, master]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+  workflow_dispatch:
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+permissions:
+  contents: write
+  pull-requests: write
+  checks: write
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: windows-latest
+    outputs:
+      version: ${{ steps.gitversion.outputs.semVer }}
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v1
+        with:
+          versionSpec: '5.x'
+
+      - name: Determine Version
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v1
+        with:
+          useConfigFile: true
+          configFilePath: GitVersion.yml
+
+      - name: Display Version
+        run: |
+          Write-Host "SemVer: ${{ steps.gitversion.outputs.semVer }}"
+          Write-Host "FullSemVer: ${{ steps.gitversion.outputs.fullSemVer }}"
+        shell: pwsh
+
+      - name: Build Module
+        run: |
+          ./build.ps1 -ResolveDependency -Tasks build
+        shell: pwsh
+
+      - name: Run Tests
+        run: |
+          ./build.ps1 -Tasks test
+        shell: pwsh
+
+      - name: Upload Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: output/testResults/*.xml
+          retention-days: 30
+
+      - name: Publish Test Results
+        if: always()
+        uses: EnricoMi/publish-unit-test-result-action/windows@v2
+        with:
+          files: output/testResults/*.xml
+          check_name: Test Results
+
+      - name: Upload Code Coverage to Codecov
+        if: always()
+        uses: codecov/codecov-action@v4
+        with:
+          files: output/testResults/coverage*.xml
+          flags: unit
+          name: codecov-umbrella
+          fail_ci_if_error: false
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: XOAPWindowsConfigDSC-${{ steps.gitversion.outputs.semVer }}
+          path: output/
+          retention-days: 30
+
+  quality-assurance:
+    name: Quality Assurance Tests
+    runs-on: windows-latest
+    needs: build
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: XOAPWindowsConfigDSC-${{ needs.build.outputs.version }}
+          path: output/
+
+      - name: Run HQRM Tests
+        run: |
+          ./build.ps1 -Tasks hqrmtest
+        shell: pwsh
+
+  publish:
+    name: Publish Module
+    runs-on: windows-latest
+    needs: [build, quality-assurance]
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+    environment:
+      name: production
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: XOAPWindowsConfigDSC-${{ needs.build.outputs.version }}
+          path: output/
+
+      - name: Publish to PowerShell Gallery
+        if: success()
+        run: |
+          ./build.ps1 -Tasks publish
+        shell: pwsh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GALLERY_API_TOKEN: ${{ secrets.PSGALLERY_API_KEY }}
+
+      - name: Create GitHub Release
+        if: success() && startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: output/**/*.nupkg
+          generate_release_notes: true
+          token: ${{ secrets.GITHUB_TOKEN }}

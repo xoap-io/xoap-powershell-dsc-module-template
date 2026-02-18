@@ -1,0 +1,13 @@
+# VS Code Extensions Recommendations
+
+{
+    "recommendations": [
+        "ms-vscode.powershell",
+        "davidanson.vscode-markdownlint",
+        "ms-azuretools.vscode-azureresourcegroups",
+        "editorconfig.editorconfig",
+        "streetsidesoftware.code-spell-checker",
+        "yzhang.markdown-all-in-one",
+        "bierner.github-markdown-preview"
+    ]
+}
